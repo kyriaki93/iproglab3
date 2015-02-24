@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dinner planner</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+
+  </head>
+  <body>
+	<div class="container-fluid">
+    	<div class="row">
+			<div class="col-md-12" style="background-color:#efefef;">
+				<h1>HOMELETTE</h1><h6> From the best chefs in the world directly into your kitchen</h6>
+             </div>
+		</div>
+        <div class="row">
+			<div class="col-md-2">
+            <h3>My planner</h3>
+              <div id="exampleView">
+                  <div>
+                      People: <span id="numberOfGuests"></span>
+                  </div>
+                  <div>
+                	  <button id="minusGuest" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-minus"></span></button>
+                      <button id="plusGuest" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span></button>
+                  </div>
+                  <div style="width:100%;padding:5% 0 5% 0;">
+             	  	<div style="width:80%;float:left;background-color:#efefef;">Dish Name</div>
+             	  	<div style="width:20%;float:right;background-color:#efefef;">Cost</div>
+          	      </div>
+
+          		  <div style="width:100%;">
+            		<div style="width:80%;float:left;"><span id="dishName"></span></div>
+                	<div style="width:20%;float:right;"><span id="dishPrice"></span></div>
+          		  </div>
+         		  <br />
+        		  <br />
+            
+          		  <div style="padding:5% 0 0 0;">
+            		<p align="right">SEK <span id="totalCost"></span></p>
+          		  </div>
+
+           		  <center><button class='btn btn-default' type='submit'>Confirm Dinner</button></center>
+              </div>
+        	</div>
+            <div class="col-md-10">
+        <div id="selectView">
+            <span id="allDishes"></span>
+        </div>
+        </div>       
+     </div>             
+  </div>
+
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+	<!-- The application JavaScript code -->
+	<script src="jstest/app.js"></script>
+    <script src="jstest/numguest.js"></script>
+	<script src="jstest/model/dinnerModel.js"></script>
+	<script src="jstest/view/exampleView.js"></script>
+	<script src="jstest/view/exampleViewController.js"></script>
+    <script src="jstest/view/DishView.js"></script>
+  </body>
+</html>

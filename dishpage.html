@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dinner planner</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+
+  </head>
+  <body>
+	<div class="container-fluid">
+    	<div class="row">
+			<div class="col-md-12" style="background-color:#efefef;">
+				<h1>HOMELETTE</h1><h6> From the best chefs in the world directly into your kitchen</h6>
+             </div>
+		</div>
+        <div class="row">
+			<div class="col-md-2">
+            <h3>My planner</h3>
+              <div id="exampleView">
+                  <div>
+                      People: <span id="numberOfGuests"></span>
+                  </div>
+                  <div>
+                	  <button id="minusGuest" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-minus"></span></button>
+                      <button id="plusGuest" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span></button>
+                  </div>
+                  <div style="width:100%;padding:5% 0 5% 0;">
+             	  	<div style="width:80%;float:left;background-color:#efefef;">Dish Name</div>
+             	  	<div style="width:20%;float:right;background-color:#efefef;">Cost</div>
+          	      </div>
+
+          		  <div style="width:100%;">
+            		<div style="width:80%;float:left;"><span id="dishName"></span></div>
+                	<div style="width:20%;float:right;"><span id="dishPrice"></span></div>
+          		  </div>
+         		  <br />
+        		  <br />
+            
+          		  <div style="padding:5% 0 0 0;">
+            		<p align="right">SEK <span id="totalCost"></span></p>
+          		  </div>
+
+           		 <center><button class='btn btn-default' onclick='overview()' type='submit'>Confirm Dinner</button></center>
+              </div>
+        	</div>
+            <div class="col-md-10">
+            	<div class="selectDish" style="background-image: url('images/carrots.jpg');padding:3% 3% 5% 3%;">
+                	<h4><font color="white"><b>SELECT DISH</b></font></h4>
+            	<div class="row">
+                	<div class="col-md-4">
+                    	<div class="input-group">
+                        	<input type="text" class="form-control" placeholder="Enter key words">
+                        	<span class="input-group-btn">
+                            	<button class="btn btn-default" type="button">Search</button>
+                        	</span>
+                    	</div>
+                	</div>
+                <div class="col-md-4">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdown" data-toggle="dropdown" aria-expanded=			"true">Choose course <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Main</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Starter</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Dessert</a></li>
+                        </ul>
+                    </div>
+                </div>
+           	 </div>
+        </div>
+        <div id="selectView">
+            <span id="allDishes"></span>
+        </div>
+        </div>       
+     </div>             
+  </div>
+
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+	<!-- The application JavaScript code -->
+	<script src="jstest/app.js"></script>
+	<script src="jstest/model/dinnerModel.js"></script>
+	<script src="jstest/view/SideMenuView.js"></script>
+    <script src="jstest/view/SelectView.js"></script>
+    <script src="jstest/numguest.js"></script>
+  </body>
+</html>
