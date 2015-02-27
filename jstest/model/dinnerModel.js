@@ -10,18 +10,21 @@ var DinnerModel = function() {
 	//add new observer to the array
 	this.addObserver = function(observer){
 		observers.push(observer);
+		console.log(observers);
 	}
 	
 	//call update method on all the obserservers in the array
-	var notifyObserver = function(obj){
-		for (k=0;i<observers.length;k++){
+	var notifyObservers = function(obj){
+		for (var k=0;i<observers.length;k++){
 				observers[k].update(obj);
 				console.log(observers[k]);
 			}
 	}
 	
 	this.setNumberOfGuests = function(num) {
-		numGuest += num;
+		numGuest = num;
+		console.log(numGuest);
+		notifyObservers();
 	}
 
 	// should return 

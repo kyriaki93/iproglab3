@@ -1,6 +1,11 @@
 //ExampleView Object constructor
 var ExampleView = function (container,model) {
 	
+	this.container = container;
+	//container.hide();
+	
+	model.addObserver(this);
+	
 	// Get all the relevant elements of the view (ones that show data
   	// and/or ones that responed to interaction)
 	this.numberOfGuests = container.find("#numberOfGuests");
@@ -109,5 +114,11 @@ var ExampleView = function (container,model) {
 	}
 	
 	this.dishName.html(this.getNames);
+	
+		this.update = function(obj){
+			this.numberOfGuests.html(model.getNumberOfGuests);
+	
+			exampleViewController.refresh();
+	}
 }
  
