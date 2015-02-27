@@ -12,7 +12,7 @@ var ExampleView = function (container,model) {
 	this.plusButton = container.find("#plusGuest");
 	this.minusButton = container.find("#minusGuest");
 	
-	this.numberOfGuests.html(model.getNumberOfGuests);
+	this.numberOfGuests.html(model.getNumberOfGuests());
 	
 	this.totalCost = container.find("#totalCost");
 	this.dishName = container.find("#dishName");
@@ -115,8 +115,8 @@ var ExampleView = function (container,model) {
 	
 	this.dishName.html(this.getNames);
 	
-		this.update = function(obj){
-			this.numberOfGuests.html(model.getNumberOfGuests);
+		this.update = function (obj){
+			this.numberOfGuests.html(model.getNumberOfGuests());
 	
 			exampleViewController.refresh();
 	}

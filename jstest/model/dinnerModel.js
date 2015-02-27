@@ -10,7 +10,6 @@ var DinnerModel = function() {
 	//add new observer to the array
 	this.addObserver = function(observer){
 		observers.push(observer);
-		console.log(observers);
 	}
 	
 	//call update method on all the obserservers in the array
