@@ -5,6 +5,20 @@ var DinnerModel = function() {
 	// and selected dinner options for dinner menu
 	var selectedDishes = new Object();
 	var numGuest = 3;
+	var observers = [];
+	
+	//add new observer to the array
+	this.addObserver = function(observer){
+		observers.push(observer);
+	}
+	
+	//call update method on all the obserservers in the array
+	var notifyObserver = function(obj){
+		for (k=0;i<observers.length;k++){
+				observers[k].update(obj);
+				console.log(observers[k]);
+			}
+	}
 	
 	this.setNumberOfGuests = function(num) {
 		numGuest += num;
