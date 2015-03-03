@@ -1,7 +1,7 @@
 var ExampleView = function (container,model) {
 
 	this.container=container;
-	//container.hide();
+	container.hide();
 	
 	model.addObserver(this);
 
