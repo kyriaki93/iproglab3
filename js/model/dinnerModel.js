@@ -1,38 +1,32 @@
 //DinnerModel Object constructor
 var DinnerModel = function() {
- 
-	//TODO Lab 2 implement the data structure that will hold number of guest
-	// and selected dinner options for dinner menu
-	var selectedDishes = new Object();
+
 	var numGuest = 3;
+	var selectedDishes = new Object();
 	var observers = [];
 	
-	//add new observer to the array
-	this.addObserver = function(observer){
+
+	this.addObserver = function(observer) {
 		observers.push(observer);
 	}
-	
-	//call update method on all the obserservers in the array
-	var notifyObservers = function(obj){
-		
-		for (var k=0;i<observers.length;k++){
-				observers[k].update(obj);
-				console.log(observers[k]);
+
+	var notifyObservers = function(obj) {
+		for (var i=0;i<observers.length;i++){
+				observers[i].update(obj);
+				console.log(observers[i]);
 			}
 	}
-	
+
 	this.setNumberOfGuests = function(num) {
 		numGuest = num;
-		console.log(numGuest);
+		console.log(numGuest)
 		notifyObservers();
 	}
-
-	// should return 
+	
 	this.getNumberOfGuests = function() {
 		return numGuest;
 	}
 
-	//Returns the dish that is on the menu for selected type 
 	this.getSelectedDish = function(type) {
 		var id = selectedDishes[type];
 		var dish = this.getDish(id);
@@ -45,7 +39,7 @@ var DinnerModel = function() {
 		return selectedDishes;
 	}
 
-	//Returns all ingredients for all the dishes on the menu... //gets ingredients from a specifik ID!!! 
+//Returns all ingredients for all the dishes on the menu... //gets ingredients from a specifik ID!!! 
 	this.getAllIngredients = function(id) {
 		name = "";
 		var dish = this.getDish(id);
@@ -135,27 +129,28 @@ var DinnerModel = function() {
 	this.getTotalMenuPrice = function() {
 		
 	}
-	
 
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
-		var dish = this.getDish(id); 
+		//TODO Lab 2 
+		var dish = this.getDish(id);
 		var type = dish.type;
-		
-		selectedDishes[type]= id;
+		selectedDishes[type] = id;
+		//notifyObservers();
 	}
 
 	//Removes dish from menu
 	this.removeDishFromMenu = function(id) {
-		var dish = this.getDish(id); 
-		var type = dish.type;
-		
-		if(selectedDishes[type] === id){
-			delete selectedDishes[type];
+	var dish = this.getDish(id);
+	var type = dish.type; 
+	console.log("removeDishFromMenu in dinnerModel");
+	if(chosenDishes[type] === id) {
+		delete selectedDishes[type];
+		//notifyObservers();
 		}
-	}
 
+	}
 
 	//function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
 	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
@@ -198,7 +193,7 @@ var DinnerModel = function() {
 	// can sometimes be empty like in the example of eggs where
 	// you just say "5 eggs" and not "5 pieces of eggs" or anything else.
 	var dishes = [{
-		'id':1,
+			'id':1,
 		'name':'French toast',
 		'type':'starter',
 		'image':'toast.jpg',

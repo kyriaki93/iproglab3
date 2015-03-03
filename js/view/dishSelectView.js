@@ -1,8 +1,8 @@
-var SelectView = function (container, model) {
+var DishSelectView = function (container,model) {
+
+	this.container=container;
 	
-	this.container = container;
-	
-	model.addObserver(this);
+	//model.addObserver(this);
 	
 	this.allDishes = container.find("#allDishes");
 	
@@ -24,6 +24,8 @@ var SelectView = function (container, model) {
 		return div;
 	};
 		
-	this.allDishes.html(this.getDishes);
-	
+	//this.allDishes.html(this.getDishes);
+	this.allDishes.html("Selecten visas!");
+
+
 }

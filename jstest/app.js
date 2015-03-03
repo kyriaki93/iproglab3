@@ -12,6 +12,6 @@ $(function() {
 	var dishView = new DishView($("#dishView"), model);
 
 	//create controllers
-	var exampleViewController = new ExampleViewController(exampleView,model);
+	window.exampleViewController = new ExampleViewController(exampleView,model);
 
 });

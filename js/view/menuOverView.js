@@ -1,7 +1,10 @@
-var SelectView = function (container, model) {
-	
-	this.allDishes = container.find("#allDishes");
-	
+var MenuOverView = function (container,model) {
+
+	this.container=container;
+	//container.hide();
+
+
+	this.inMenu = container.find("#inMenu");
 
 	
 	this.getDishes = function() {
@@ -36,10 +39,13 @@ var SelectView = function (container, model) {
 						var p = model.getDishPrice(id);
 						price += p;
 						div += "<div class='col-md-2' style='margin: 2% 2% 2% 2%'><center><h2>"+ t.name+ "</h2><img src=images/"+t.image+" width=100%><br/><h5>"+ p +" SEK</h5></center></div>";
-						div += '<div class="col-md-12"><h2>Total price: '+ price +' KR</h2><br><button class="btn btn-default" type="submit" onclick="p()" >Print full recipe!</button></div>';
+						div += '<div class="col-md-12"><h2>Total price: '+ price +' KR</h2><br><button class="btn btn-default" type="submit" id="print-button" >Print full recipe!</button></div>';
 					}
 					
 				}
+				else{
+						div +="<p>hej</p>";
+					}
     		k++;
 			return div;
 		}
@@ -48,7 +54,8 @@ var SelectView = function (container, model) {
 		return div;
 	};
 		
-	this.allDishes.html(this.getDishes);
+	this.inMenu.html("menun visas!");
 	
-}
 
+
+ }

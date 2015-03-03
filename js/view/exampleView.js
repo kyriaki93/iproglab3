@@ -83,7 +83,7 @@ var ExampleView = function (container,model) {
 	this.dishPrice.html(this.getPrice);
 	
 
-	this.getNames = function() {
+this.getNames = function() {
 
 			var output = "";	
 			
@@ -93,17 +93,17 @@ var ExampleView = function (container,model) {
 					if(type[k] == 'starter'){
 						var id = selected.starter
 						var t = model.getDish(id);
-						output += t.name + "<br>";
+						output += '<button id="remove" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></button> '+t.name +'<br />';
 					}
 						if(type[k] == 'main'){
 						var id = selected.main
 						var t = model.getDish(id);
-						output += t.name + "<br>";
+						output += '<button id="remove" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></button> '+t.name +'<br />';
 					}				
 						if(type[k] == 'starter'){
 						var id = selected.dessert
 						var t = model.getDish(id);
-						output += t.name + "<br>";
+						output += '<button id="remove" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></button> '+t.name +'<br />';
 					}			
 				}
 				else{
@@ -115,6 +115,7 @@ var ExampleView = function (container,model) {
 	}
 	
 	this.dishName.html(this.getNames);
+
 
 	//Funktion som körs vid update
 	this.update = function (obj){
