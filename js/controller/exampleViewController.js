@@ -16,29 +16,23 @@ var ExampleViewController = function(view, model ) {
 	 view.container.hide();
  	$(searchMenuView).hide();
  	$(dishSelectView).hide();
- 	$(singleDishView).hide();
+ 	$(dishView).hide();
 	$(startView).hide();
  	$(menuOverView).show();
 
  });
 
-// clickable images - Go to Single dish view //
-view.images.click(function(){
-	// get id from clickable picture and put in menu
-	
-	//go to dishview
-	 view.container.hide();
- 	$(searchMenuView).hide();
- 	$(dishView).show();
 
- });
+
+//typeselector controller
+	
 
 this.refresh = function(){
 
 //removes chosen dish 	
 type = ['starter', 'main', 'dessert']
 
-view.removeStarter.click(function(){
+/*view.removeStarter.click(function(){
  var dish=model.getSelectedDish('starter');
  var id=dish.id;
  model.removeDishFromMenu(id);
@@ -59,8 +53,20 @@ console.log("removeMain in ExampleViewController");
  var id=dish.id;
  model.removeDishFromMenu(id);
 console.log("removeDessert in ExampleViewController");
-});
+});*/
 
+// clickable images - Go to Single dish view //
+view.images.click(function(){
+	// get id from clickable picture
+	var id = ($(this).attr('id'));
+	model.addCurrentDish(id);
+	
+	//go to dishview
+ 	$(searchMenuView).hide();
+	$(allDishes).hide();
+ 	$(dishView).show();
+
+ });
  
  }
 

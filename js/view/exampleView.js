@@ -114,7 +114,33 @@ this.getNames = function() {
 	
 	this.dishName.html(this.getNames);
 	
-	//select part//
+	
+	// Search Menu View //
+	this.searchM = container.find('#searchM');
+	
+	this.searchMenu = function() {
+	var div = '';
+	div += '<div id="searchMenuView">'
+    div += '<h3><b>SELECT DISH</b></h3>'
+    div += '<div class="row"><div class="col-md-4"><div class="input-group">'
+    div += '<input type="text" class="form-control" placeholder="Enter key words">'
+    div += '<span class="input-group-btn">'
+    div += '<button id="searchButton" class="btn btn-default" type="button">Search</button></span></div></div>'
+    div += '<div class="col-md-4">'
+    div += '<select id ="typeSelect" class="form-control" multiple="multiple">'
+    div += '<option class="dropdown" id="starter" value"starter">Starter</option>'
+    div += '<option class="dropdown" id="main" value="main">Main</option>'
+    div += '<option class="dropdown" id="Dessert" value="dessert" selected="selected">dessert</option></select></div></div></div>';
+	
+	return div;
+	}
+	
+	this.searchM.html(this.searchMenu);
+	
+	this.dropdown = container.find('.dropdown');
+	this.searchBtn = container.find('#searchButton');
+	
+	//selectView part//
 	this.allDishes = container.find("#allDishes");
 		
 	//var selectedType = 'dessert';
@@ -142,6 +168,37 @@ this.getNames = function() {
 	
 	
 	this.images = container.find('.images');
+	
+	//Single dish view//
+	this.dishView = container.find("#dishView");
+		
+	var getType = model.getAllDishes(selectedType);
+		
+	this.getDish = function() {
+	var name = model.getAllIngredients(200);
+	var quantity = model.getQuantity(200);
+	var unit = model.getUnit(200);
+	var price = model.getIngredientPrice(200);
+	var pending = model.pending(200);
+		var div = '';
+		div += '<div class="row">';
+		for(i=0;i<1;i++){
+			var dish = getType[i];
+			
+			div += "<div class='col-md-5'><div><center><h2>"+ dish.name +"</h2></center></div>"
+			div += "<img src=images/"+dish.image+" width=100%><br/><br/>";
+			div += "<p>"+dish.description +"</p>"
+			div += "<div id='foodhead'><center><button class='btn btn-default' type='submit' onclick='next()' style='margin:0% 0% 10% 0%;'>Back to Select Dish</button></center></div>";
+			
+		}
+		
+		div += "</div>";
+		div += "<div class='row'><div class='col-md-5'><center><h2>Ingredients</h2></center><br><div id='quantity' class='col-md-3'>"+ quantity +"</div><div id='amount' class='col-md-3'>"+ unit +"</div><div id='name' class='col-md-3'>"+ name +"</div><div id='price' class='col-md-3'>"+ price +"</div></div><div id='pending' class='col-md-5'>"+ pending +"</div><center><button class='btn btn-default' type='submit' onclick='dish()'style='margin: 4% 4% 4% 4%;'>Confirm Dish</button></center></div></div>";
+		return div;
+
+	};
+		
+	this.dishView.html(this.getDish);
 
 	//Funktion som körs vid update
 	this.update = function (obj){

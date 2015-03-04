@@ -5,6 +5,7 @@ var DinnerModel = function() {
 	var selectedDishes = new Object();
 	var observers = [];
 	var currentType = 'dessert';
+	this.currentDish;
 
 	this.addObserver = function(observer) {
 		observers.push(observer);
@@ -17,13 +18,19 @@ var DinnerModel = function() {
 			}
 	}
 	
+	this.addCurrentDish = function(id){
+		this.currentDish = id;
+		notifyObservers();
+
+	}
+		
 	this.setCurrentType = function(type){
 		currentType = type;
 		notifyObservers();
 	
 	}
 	
-	this.getCurrentType = function(type){
+	this.getCurrentType = function(){
 		return currentType;
 	
 	}
