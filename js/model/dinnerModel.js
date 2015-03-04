@@ -4,7 +4,7 @@ var DinnerModel = function() {
 	var numGuest = 3;
 	var selectedDishes = new Object();
 	var observers = [];
-	
+	var currentType = 'dessert';
 
 	this.addObserver = function(observer) {
 		observers.push(observer);
@@ -16,12 +16,24 @@ var DinnerModel = function() {
 				console.log(observers[i]);
 			}
 	}
-
+	
+	this.setCurrentType = function(type){
+		currentType = type;
+		notifyObservers();
+	
+	}
+	
+	this.getCurrentType = function(type){
+		return currentType;
+	
+	}
+	
 	this.setNumberOfGuests = function(num) {
 		numGuest = num;
-		console.log(numGuest)
+		console.log(numGuest);
 		notifyObservers();
 	}
+	
 	
 	this.getNumberOfGuests = function() {
 		return numGuest;
@@ -133,11 +145,11 @@ var DinnerModel = function() {
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
-		//TODO Lab 2 
+
 		var dish = this.getDish(id);
 		var type = dish.type;
 		selectedDishes[type] = id;
-		//notifyObservers();
+		notifyObservers();
 	}
 
 	//Removes dish from menu
@@ -147,7 +159,7 @@ var DinnerModel = function() {
 	console.log("removeDishFromMenu in dinnerModel");
 	if(chosenDishes[type] === id) {
 		delete selectedDishes[type];
-		//notifyObservers();
+		notifyObservers();
 		}
 
 	}
