@@ -4,8 +4,7 @@ var ExampleView = function (container,model) {
 	container.hide();
 	
 	model.addObserver(this);
-
-
+	
 	// Get all the relevant elements of the view (ones that show data
   	// and/or ones that responed to interaction)
 	this.numberOfGuests = container.find("#numberOfGuests");
@@ -115,6 +114,30 @@ this.getNames = function() {
 	}
 	
 	this.dishName.html(this.getNames);
+	
+	//selecten 
+	this.allDishes = container.find("#allDishes");
+	
+	var get = model.getAllDishes('dessert');
+	
+	this.getDishes = function() {
+		
+		var div = '';
+		div += '<div class="row">';
+		for(i=0;i<get.length;i++){
+			var dish = get[i];
+			div += "<div class='col-md-3' style='margin:2% 4% 4% 4%;'><br />"
+			div += "<center><img src=images/"+dish.image+" width=90%></center><br/><br/>";
+			div += "<div id='foodhead'><center><button class='btn btn-default' type='submit' id='pick' style='margin:0% 0% 5% 0%;'>"+dish.name+"</button></center></div>";
+			div += "<p>"+dish.description +"</p></div>"
+		}
+		
+		div += "</div>";
+		return div;
+	};
+		
+	this.allDishes.html(this.getDishes);
+
 
 
 	//Funktion som körs vid update
@@ -123,6 +146,7 @@ this.getNames = function() {
 		this.totalCost.html(this.fullPrice);
 		this.dishPrice.html(this.getPrice);
 		this.dishName.html(this.getNames);
+		this.allDishes.html(this.getDishes);
 
 		//this.removeStarter = container.find("#removeStarter"); 
 		//this.removeMain = container.find("#removeMain");
