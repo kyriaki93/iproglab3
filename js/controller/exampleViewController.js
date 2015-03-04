@@ -13,16 +13,31 @@ var ExampleViewController = function(view, model ) {
 
 //When the confirm button is hit, hide and show following 
  view.confirmBtn.click(function(){
-	 view.container.hide();
  	$(searchMenuView).hide();
- 	$(dishSelectView).hide();
  	$(dishView).hide();
 	$(startView).hide();
  	$(menuOverView).show();
+	$(allDishes).hide();
+
 
  });
+ 
+//back to select view
+ view.backBtn.click(function(){
+ 	$(searchMenuView).show();
+ 	$(allDishes).show();
+ 	$(dishView).hide();
+ });
+ 
+ //back editing dinner
+ view.goBackBtn.click(function(){
+ 	$(searchMenuView).show();
+ 	$(allDishes).show();
+ 	$(dishView).hide();
+    $(menuOverView).hide();
 
-
+ });
+ 
 
 //typeselector controller
 	
@@ -67,6 +82,20 @@ view.images.click(function(){
  	$(dishView).show();
 
  });
+ 
+  //Put the selected Dish to menu
+ //FUNKAR INTE
+ view.confirmDishBtn.click(function(){
+
+ 	var id = $(this).attr('id');
+
+ 	id = parseInt(id);
+	document.getElementById('totalCost').innerHTML = "hej";
+ 	model.addDishToMenu(id);
+ 
+
+ });
+
  
  }
 

@@ -143,7 +143,6 @@ this.getNames = function() {
 	//selectView part//
 	this.allDishes = container.find("#allDishes");
 		
-	//var selectedType = 'dessert';
 	var selectedType = model.getCurrentType();
 	
 	var get = model.getAllDishes(selectedType);
@@ -188,18 +187,79 @@ this.getNames = function() {
 			div += "<div class='col-md-5'><div><center><h2>"+ dish.name +"</h2></center></div>"
 			div += "<img src=images/"+dish.image+" width=100%><br/><br/>";
 			div += "<p>"+dish.description +"</p>"
-			div += "<div id='foodhead'><center><button class='btn btn-default' type='submit' onclick='next()' style='margin:0% 0% 10% 0%;'>Back to Select Dish</button></center></div>";
+			div += "<div id='foodhead'><center><button class='btn btn-default' type='submit' id='backBtn' style='margin:0% 0% 10% 0%;'>Back to Select Dish</button></center></div>";
 			
 		}
 		
 		div += "</div>";
-		div += "<div class='row'><div class='col-md-5'><center><h2>Ingredients</h2></center><br><div id='quantity' class='col-md-3'>"+ quantity +"</div><div id='amount' class='col-md-3'>"+ unit +"</div><div id='name' class='col-md-3'>"+ name +"</div><div id='price' class='col-md-3'>"+ price +"</div></div><div id='pending' class='col-md-5'>"+ pending +"</div><center><button class='btn btn-default' type='submit' onclick='dish()'style='margin: 4% 4% 4% 4%;'>Confirm Dish</button></center></div></div>";
+		div += "<div class='row'><div class='col-md-4'><center><h2>Ingredients</h2></center><br><div id='quantity' class='col-md-2'>"+ quantity +"</div><div id='amount' class='col-md-3'>"+ unit +"</div><div id='name' class='col-md-3'>"+ name +"</div><div id='price' class='col-md-2'>"+ price +"</div></div><div id='pending' class='col-md-3'>"+ pending +"<center><button class='btn btn-default' type='submit' class='confirmDishBtn' id='200' style='margin:6% 6% 6% 6%;'>Confirm Dish</button></center></div>";
 		return div;
 
 	};
 		
 	this.dishView.html(this.getDish);
+	
+	//buttons
+	this.backBtn = container.find('#backBtn');
+	this.confirmDishBtn = container.find('.confirmDishBtn');
+	
+	//MenuOverView//
+	this.menuOverView = container.find("#menuOverView");
+	
+	
+	this.getMenu = function() {
+		
+		var div = '';
+		
+		div += '<div class="row"><div class="col-md-12"><center><div><b><h3>My Dinner: <span id="num"></span>people</h3></b>'
+        div += '<button class="btn btn-default" id="goBackBtn" type="submit">Go back and edit dinner</button>'
+        div += '</div></center></div>';
+		
+		var price=0;
+			div += '<center><div class="row">';
+				var selected = model.getFullMenu();
 
+				var type = ['starter', 'main', 'dessert'];
+						
+			for(k = 0; k < 3; k++) {
+		
+    			if(selected[type[k]]){
+					if(type[k] == 'starter'){
+						var id = selected.starter;
+						var t = model.getDish(id);
+						var p = model.getDishPrice(id);
+						price += p;
+						div += "<div class='col-md-2' style='margin: 2% 2% 2% 2%'><center><h2>"+ t.name+ "</h2><img src=images/"+t.image+" width=100%><br/><h5>"+ p +" SEK</h5></center></div>";
+					}
+						if(type[k] == 'main'){
+						var id = selected.main;
+						var t = model.getDish(id);
+						var p = model.getDishPrice(id);
+						price += p;
+						div += "<div class='col-md-2' style='margin: 2% 2% 2% 2%'><center><h2>"+ t.name+ "</h2><img src=images/"+t.image+" width=100%><br/><h5>"+ p+" SEK</h5></center></div>";
+					}				
+						if(type[k] == 'starter'){
+						var id = selected.dessert;
+						var t = model.getDish(id);
+						var p = model.getDishPrice(id);
+						price += p;
+						div += "<div class='col-md-2' style='margin: 2% 2% 2% 2%'><center><h2>"+ t.name+ "</h2><img src=images/"+t.image+" width=100%><br/><h5>"+ p +" SEK</h5></center></div>";
+						div += '<div class="col-md-12"><h2>Total price: '+ price +' KR</h2><br><button class="btn btn-default" type="submit" onlick="print()">Print full recipe!</button></div>';
+					}
+					
+				}
+    		k++;
+			return div;
+		}
+			
+			div += '</div></center>';
+		return div;
+	};
+	
+	this.menuOverView.html(this.getMenu);
+	this.goBackBtn = container.find('#goBackBtn');
+	this.num = container.find("#num");
+	this.num.html(model.getNumberOfGuests);
 	//Funktion som körs vid update
 	this.update = function (obj){
 		//side menu update
@@ -214,9 +274,11 @@ this.getNames = function() {
 		//select view update
 		this.allDishes.html(this.getDishes);
 		this.images = container.find('.images');
+		this.confirmDishBtn = container.find('.confirmDishBtn');
 
-	
-
+		//menuOverview
+		this.goBackBtn = container.find('#goBackBtn');
+		this.num.html(model.getNumberOfGuests);
 		exampleViewController.refresh();
 	}
 
