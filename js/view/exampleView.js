@@ -3,6 +3,7 @@ var ExampleView = function (container,model) {
 	this.container=container;
 	container.hide();
 	
+
 	model.addObserver(this);
 	
 	// Side menu part//
@@ -10,108 +11,60 @@ var ExampleView = function (container,model) {
 	this.plusButton = container.find("#plusGuest");
 	this.minusButton = container.find("#minusGuest");
 	this.confirmBtn = container.find("#confirm");
+	this.sideMenu = container.find("#sideMenu");
 	
 	this.numberOfGuests.html(model.getNumberOfGuests);
 	
-	var totalCost = container.find("#totalCost");
-	var dishName = container.find("#dishName");
-	var dishPrice = container.find("#dishPrice");
-
-	var type = ['starter', 'main', 'dessert'];
+	this.totalCost = container.find("#totalCost");
+	this.dishName = container.find("#dishName");
+	this.dishPrice = container.find("#dishPrice");
 	
 	this.fullPrice = function() {
-
-		var output = 0.00;	
-			var selected = model.getFullMenu();
-
-			for(k = 0; k < 3; k++) {
+			var output = 0.00;
+			if(model.currentId == 0){
+				output += "0.00";
+			}	
+			if(model.currentId != 0){
+				output += model.getDishPrice(model.currentId);
+			}
 		
-    			if(selected[type[k]]){
-					if(type[k] == 'starter'){
-						var id = selected.starter;
-						output += model.getDishPrice(id);
-					}
-						if(type[k] == 'main'){
-						var id = selected.main;
-						output += model.getDishPrice(id);
-					}				
-						if(type[k] == 'starter'){
-						var id = selected.dessert;
-						output += model.getDishPrice(id);	
-					}	
-					
-				}
-    		k++;
-			return output;
-		}
+		return output;		
 	}
 	
-	totalCost.html(this.fullPrice());
+	this.totalCost.html(this.fullPrice);
 	
 	this.getPrice = function() {
-
-			var output = "";	
-			var selected = model.getFullMenu();
-
-			for(k = 0; k < 3; k++) {
-			
-    			if(selected[type[k]]){
-					if(type[k] == 'starter'){
-						var id = selected.starter;
-						output += model.getDishPrice(id) + "<br>";
-					}
-						if(type[k] == 'main'){
-						var id = selected.main;
-						output += model.getDishPrice(id) + "<br>";
-					}				
-						if(type[k] == 'starter'){
-						var id = selected.dessert;
-						output += model.getDishPrice(id) + "<br>";	
-					}			
-				}
-					else{
-					output += "0.00";
-				}
-    		k++;
-			return output;
-		}
-	}
-	dishPrice.html(this.getPrice());
-	
-
-this.getNames = function() {
-
-			var output = "";	
-			var selected = model.getFullMenu();
-
-			for(k = 0; k < 3; k++) {
+		var output = "";
+			if(model.currentId == 0){
+				output += "0.00";
+			}	
+			if(model.currentId != 0){
+				output += model.getDishPrice(model.currentId) + "<br>";
+			}
 		
-    			if(selected[type[k]]){
-					if(type[k] == 'starter'){
-						var id = selected.starter
-						var t = model.getDish(id);
-						output += '<button id="remove" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></button> '+t.name +'<br />';
-					}
-						if(type[k] == 'main'){
-						var id = selected.main
-						var t = model.getDish(id);
-						output += '<button id="remove" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></button> '+t.name +'<br />';
-					}				
-						if(type[k] == 'starter'){
-						var id = selected.dessert
-						var t = model.getDish(id);
-						output += '<button id="remove" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></button> '+t.name +'<br />';
-					}			
-				}
-				else{
-					output += "Pending";
-				}
-    		k++;
-			return output;
-		}
+		return output;
 	}
 	
-	dishName.html(this.getNames());
+	this.dishPrice.html(this.getPrice);
+	
+
+	this.getNames = function() {
+			var output ='';
+			if(model.currentId == 0){
+				output += "Pending";
+			}	
+			if(model.currentId != 0){
+				var dish = model.getDish(model.currentId);
+				output += '<button id="remove" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></button> '+dish.name +'<br/>';
+			}
+
+			return output;
+	}
+	
+	this.dishName.html(this.getNames);
+	
+	
+	///////////////////////////////
 	
 	
 	// Search Menu View //
@@ -138,6 +91,10 @@ this.getNames = function() {
 	
 	this.dropdown = container.find('.dropdown');
 	this.searchBtn = container.find('#searchButton');
+	
+	
+	///////////////////////////////
+	
 	
 	//selectView part//
 	this.allDishes = container.find("#allDishes");
@@ -166,6 +123,12 @@ this.getNames = function() {
 	
 	
 	this.images = container.find('.images');
+	
+	
+	
+	///////////////////////////////
+
+
 	
 	//Single dish view//
 	this.dishView = container.find("#dishView");
@@ -198,10 +161,16 @@ this.getNames = function() {
 		
 	this.dishView.html(this.getDish);
 	
-	//buttons
+	
 	this.backBtn = container.find('#backBtn');
 	this.confirmDishBtn = container.find('.confirmDishBtn');
 	
+	
+	
+	///////////////////////////////
+
+
+
 	//MenuOverView//
 	this.menuOverView = container.find("#menuOverView");
 	
@@ -213,7 +182,7 @@ this.getNames = function() {
 		div += '<div class="row"><div class="col-md-12"><center><div><b><h3>My Dinner: <span id="num"></span> people</h3></b>'
         div += '<button class="btn btn-default" id="goBackBtn" type="submit">Go back and edit dinner</button>'
         div += '</div></center></div>';
-		
+		/*
 		var price=0;
 			div += '<center><div class="row">';
 				var selected = model.getFullMenu();
@@ -249,25 +218,45 @@ this.getNames = function() {
 				}
     		k++;
 			return div;
-		}
+		} */
 			
-			div += '</div></center>';
+			
+			
+			var price = 0;
+			if(model.currentId != 0){
+				var dish = model.getDish(model.currentId);
+				var p = model.getDishPrice(model.currentId);
+			price += p;
+			div += '<center><div class="row">';
+			div += "<div class='col-md-2' style='margin: 2% 2% 2% 2%'><center><h2>"+ dish.name+ "</h2><img src=images/"+dish.image+" width=100%><br/><h5>"+ p +" SEK</h5></center></div>";
+			div += '<div class="col-md-12"><h2>Total price: '+ price +' KR</h2><br><button class="btn btn-default" type="submit" id="print">Print full recipe!</button></div>'; 
+			div += '</div></center>'; 
+			}
+			else{
+				div += 'heja';
+			}
 		return div;
-	};
+		
 	
+	};
 	this.menuOverView.html(this.getMenu);
 	
 	this.goBackBtn = container.find('#goBackBtn');
 	this.num = container.find("#num");
 	this.num.html(model.getNumberOfGuests);
+	
+	
+
+
+
 
 	//When a update is detected --> runs
 	this.update = function (obj){
 		//side menu update
 		this.numberOfGuests.html(model.getNumberOfGuests);
-		totalCost.html(this.fullPrice());
-		dishPrice.html(this.getPrice());
-		dishName.html(this.getNames());
+		this.totalCost.html(this.fullPrice);
+		this.dishPrice.html(this.getPrice);
+		this.dishName.html(this.getNames);
 		//this.removeStarter = container.find("#removeStarter"); 
 		//this.removeMain = container.find("#removeMain");
 		//this.removeDessert = container.find("#removeDessert");
@@ -276,7 +265,6 @@ this.getNames = function() {
 		//select view update
 		this.allDishes.html(this.getDishes);
 		this.images = container.find('.images');
-
 		//singleDisg view update
 		this.dishView.html(this.getDish);
 		this.backBtn = container.find('#backBtn');
@@ -284,7 +272,7 @@ this.getNames = function() {
 
 		//menuOverview
 		this.num.html(model.getNumberOfGuests);
-		
+		this.getMenu();
 		exampleViewController.refresh();
 	}
 

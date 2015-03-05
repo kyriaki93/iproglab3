@@ -12,6 +12,10 @@ var ExampleViewController = function(view, model ) {
  model.setNumberOfGuests(model.getNumberOfGuests() - 1);
  });
 
+
+
+this.refresh = function(){
+
 //When the confirm button is hit, hide and show following 
  view.confirmBtn.click(function(){
  	$(searchMenuView).hide();
@@ -19,41 +23,10 @@ var ExampleViewController = function(view, model ) {
 	$(startView).hide();
  	$(menuOverView).show();
 	$(allDishes).hide();
+	$(sideMenu).hide();
 
 
- });
-
-//typeselector controller
-	
-
-this.refresh = function(){
-
-//removes chosen dish 	
-type = ['starter', 'main', 'dessert']
-
-/*view.removeStarter.click(function(){
- var dish=model.getSelectedDish('starter');
- var id=dish.id;
- model.removeDishFromMenu(id);
-console.log("removeStarter in ExampleViewController");
- });
-
-//Kod för kryss-knapp som tar bort vald main från menyn	
- view.removeMain.click(function(){
- var dish=model.getSelectedDish('main');
- var id=dish.id;
- model.removeDishFromMenu(id);
-console.log("removeMain in ExampleViewController");
- });
-
- //Kod för kryss-knapp som tar bort vald dessert från menyn	
- view.removeDessert.click(function(){
- var dish=model.getSelectedDish('dessert');
- var id=dish.id;
- model.removeDishFromMenu(id);
-console.log("removeDessert in ExampleViewController");
-});*/
-
+ });	
 // clickable images - Go to Single dish view //
 view.images.click(function(){
 	// get id from clickable picture
@@ -80,27 +53,25 @@ view.images.click(function(){
  	$(allDishes).show();
  	$(dishView).hide();
     $(menuOverView).hide();
+	$(sideMenu).show();
 
  });
-  //Put the selected Dish to menu
- //FUNKAR INTE
+ 
+   //Put the selected Dish to menu
  view.confirmDishBtn.click(function(){
 
  	var id = $(this).attr('id');
 
  	id = parseInt(id);
- 	model.addDishToMenu(id);
- 	
-	$(dishView).hide();
-
+	model.changeId(id);
+	model.addDishToMenu(id);
  });
 
- 
+ //Search Button
   view.searchBtn.click(function(){
 
 	searchWord = $('#searchString').val();
 	model.changeSearchWord(searchWord);
-//	$(allDishes).hide();
 
  });
  

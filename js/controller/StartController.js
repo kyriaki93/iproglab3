@@ -4,5 +4,7 @@ $("#create").click(function(){
 	$(searchMenuView).show();
 	$(selectView).show();
 	$(dishView).hide();
+	$(menuOverView).hide();
+	
 
  }); 

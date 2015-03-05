@@ -7,6 +7,7 @@ var DinnerModel = function() {
 	var currentType = 'dessert';
 	var currentDish = 200;
 	this.searchWord = '';
+	this.currentId = 0;
 
 	this.addObserver = function(observer) {
 		observers.push(observer);
@@ -18,13 +19,30 @@ var DinnerModel = function() {
 				console.log(observers[i]);
 			}
 	}
+	/*
+	this.setId = function(id){
+		currentId = id;
+		console.log(currentId);
+		notifyObservers();
+	} 
 	
+	this.getId = function(){
+		return currentId;
+	}
+	*/
+	
+	this.changeId = function(id){
+		this.currentId = id;
+		console.log(this.currentId);
+		notifyObservers();
+	}
 	
 	this.setCurrentDish = function(id){
 		currentDish = id;
 		console.log(currentDish);
 		notifyObservers();
 	}
+	
 	
 	this.getCurrentDish = function(){
 		return currentDish;
@@ -47,6 +65,7 @@ var DinnerModel = function() {
 		console.log(this.searchWord);
 		notifyObservers();
 	}
+	
 	
 	this.setNumberOfGuests = function(num) {
 		numGuest = num;
@@ -141,7 +160,21 @@ var DinnerModel = function() {
 		return '<div class="col-md-4"><br>Pending: SEK '+ price*numGuest +'</div>';	
 		
 	}
+	this.getDishPrice = function(id) {
 
+		var price = 0;
+
+		var dish = this.getDish(id);
+		var ingredients = dish.ingredients;
+
+		for (i=0; i<ingredients.length; i++){
+			var ingredient = ingredients[i];
+			price += ingredient.price;
+		}
+
+		return (price*numGuest);
+	}	
+	
 
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
@@ -443,6 +476,7 @@ var DinnerModel = function() {
 			'unit':'ml',
 			'price':8
 			}]
+			
 		}
 	];
 
