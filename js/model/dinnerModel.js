@@ -242,7 +242,7 @@ var DinnerModel = function() {
 		'name':'Black Bean Cakes',
 		'type':'starter',
 		'image':'black.jpg',
-		'description':"Here is how you make it... Lore ipsum...",
+		'description':"Place beans in a large pot and add water until beans are submerged by 3 to 4 inches. Add the garlic and onion, squeeze in orange juice, then add the squeezed orange halves. Cover and place over high heat until water comes to a boil, then uncover pot and reduce heat to a bare simmer. Cook until beans are completely tender and creamy, 1 to 2 hours, stirring occasionally, and adding water if tops of beans become exposed.",
 		'ingredients':[{ 
 			'name':'dry yeast',
 			'quantity':0.5,
@@ -264,7 +264,7 @@ var DinnerModel = function() {
 		'name':'Salad',
 		'type':'starter',
 		'image':'salad.jpg',
-		'description':"Here is how you make it... Lore ipsum...",
+		'description':"Mix collard greens, kale, romaine, cabbage, pear, onion, orange bell pepper, avocado, carrot, tomatoes, walnuts, and raisins together in a large bowl. Combine olive oil, vinegar, honey, oregano, chili powder, mustard, garlic, salt, and black pepper in a glass jar with a lid. Cover jar with lid and shake vigorously until dressing is well mixed. Pour dressing over salad; toss to coat.",
 		'ingredients':[{ 
 			'name':'round Brie cheese',
 			'quantity':10,
@@ -288,7 +288,7 @@ var DinnerModel = function() {
 		'image':'chicken.jpg',
 		'description':"Preheat an oven to 400 degrees F (200 degrees C). Place the beef into a mixing bowl, and season with salt, onion, garlic salt, Italian seasoning, oregano, red pepper flakes, hot pepper sauce, and Worcestershire sauce; mix well. Add the milk, Parmesan cheese, and bread crumbs.",
 		'ingredients':[{ 
-			'name':'extra lean ground beef',
+			'name':'ground beef',
 			'quantity':115,
 			'unit':'g',
 			'price':20
@@ -298,7 +298,7 @@ var DinnerModel = function() {
 			'unit':'g',
 			'price':3
 			},{
-			'name':'small onion, diced',
+			'name':'small onion',
 			'quantity':0.25,
 			'unit':'',
 			'price':2
@@ -318,12 +318,12 @@ var DinnerModel = function() {
 			'unit':'g',
 			'price':3
 			},{
-			'name':'crushed red pepper flakes',
+			'name':'red pepper',
 			'quantity':0.6,
 			'unit':'g',
 			'price':3
 			},{
-			'name':'Worcestershire sauce',
+			'name':'Worcestershire',
 			'quantity':6,
 			'unit':'ml',
 			'price':7
@@ -333,12 +333,12 @@ var DinnerModel = function() {
 			'unit':'ml',
 			'price':4
 			},{
-			'name':'grated Parmesan cheese',
+			'name':'Parmesan cheese',
 			'quantity':5,
 			'unit':'g',
 			'price':8
 			},{
-			'name':'seasoned bread crumbs',
+			'name':'bread crumbs',
 			'quantity':15,
 			'unit':'g',
 			'price':4
@@ -348,7 +348,7 @@ var DinnerModel = function() {
 		'name':'Pizza',
 		'type':'main',
 		'image':'pizza.jpg',
-		'description':"Here is how you make it... Lore ipsum...",
+		'description':"In a large mixing bowl, combine flours and salt. In a small mixing bowl, stir together 200 grams (about 1 cup) lukewarm tap water, the yeast and the olive oil, then pour it into flour mixture. Knead with your hands until well combined, approximately 3 minutes, then let the mixture rest for 15 minutes.",
 		'ingredients':[{ 
 			'name':'ingredient 1',
 			'quantity':1,
@@ -370,7 +370,7 @@ var DinnerModel = function() {
 		'name':'Chili Soup',
 		'type':'main',
 		'image':'soup.jpg',
-		'description':"Here is how you make it... Lore ipsum...",
+		'description':"Heat a large Dutch oven over medium-high heat. Remove casings from sausage. Add sausage, onion, and the next 4 ingredients (onion through jalapeño) to pan; cook 8 minutes or until sausage and beef are browned, stirring to crumble.Add chili powder and the next 7 ingredients (chili powder through bay leaves), and cook for 1 minute, stirring constantly.",
 		'ingredients':[{ 
 			'name':'ingredient 1',
 			'quantity':1,

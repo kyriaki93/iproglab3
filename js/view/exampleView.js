@@ -189,7 +189,7 @@ this.getNames = function() {
 		
 		
 		div += "</div>";
-		div += "<div class='row'><div class='col-md-4'><center><h2>Ingredients</h2></center><br><div id='quantity' class='col-md-2'>"+ quantity +"</div><div id='amount' class='col-md-3'>"+ unit +"</div><div id='name' class='col-md-3'>"+ name +"</div><div id='price' class='col-md-2'>"+ price +"</div></div><div id='pending' class='col-md-3'>"+ pending +"<center><span class='confirmDishBtn' id='"+ getId+"'><input class='btn btn-default' type='submit' value='Confirm Dish' style='margin:6% 6% 6% 6%;'></span></center></div>";
+		div += "<div class='row'><div class='col-md-4'><center><h2>Ingredients</h2></center><br><div id='quantity' class='col-md-2'>"+ quantity +"</div><div id='amount' class='col-md-2'>"+ unit +"</div><div id='name' class='col-md-6'>"+ name +"</div><div id='price' class='col-md-2'>"+ price +"</div></div><div id='pending' class='col-md-3'>"+ pending +"<center><span class='confirmDishBtn' id='"+ getId+"'><input class='btn btn-default' type='submit' value='Confirm Dish' style='margin:6% 6% 6% 6%;'></span></center></div>";
 		return div;
 
 	};
