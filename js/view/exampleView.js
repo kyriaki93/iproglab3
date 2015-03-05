@@ -122,7 +122,7 @@ this.getNames = function() {
 	div += '<div id="searchMenuView">'
     div += '<h3><b>SELECT DISH</b></h3>'
     div += '<div class="row"><div class="col-md-4"><div class="input-group">'
-    div += '<input type="text" class="form-control" placeholder="Enter key words">'
+    div += '<input type="text" id="searchString" class="form-control" placeholder="Enter key words">'
     div += '<span class="input-group-btn">'
     div += '<button id="searchButton" class="btn btn-default" type="button">Search</button></span></div></div>'
     div += '<div class="col-md-4">'
@@ -145,7 +145,9 @@ this.getNames = function() {
 	this.getDishes = function() {
 	
 	var selectedType = model.getCurrentType();
-	var get = model.getAllDishes(selectedType);
+	var filter = model.searchWord;
+	
+	var get = model.getAllDishes(selectedType, filter);
 		var div = '';
 		div += '<div class="row">';
 		for(i=0;i<get.length;i++){

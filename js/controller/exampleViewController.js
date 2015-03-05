@@ -12,7 +12,16 @@ var ExampleViewController = function(view, model ) {
  model.setNumberOfGuests(model.getNumberOfGuests() - 1);
  });
 
+//When the confirm button is hit, hide and show following 
+ view.confirmBtn.click(function(){
+ 	$(searchMenuView).hide();
+ 	$(dishView).hide();
+	$(startView).hide();
+ 	$(menuOverView).show();
+	$(allDishes).hide();
 
+
+ });
 
 //typeselector controller
 	
@@ -80,28 +89,18 @@ view.images.click(function(){
  	var id = $(this).attr('id');
 
  	id = parseInt(id);
- 	model.addDishToMenu(200);
+ 	model.addDishToMenu(id);
  	
 	$(dishView).hide();
 
  });
 
-//When the confirm button is hit, hide and show following 
- view.confirmBtn.click(function(){
- 	$(searchMenuView).hide();
- 	$(dishView).hide();
-	$(startView).hide();
- 	$(menuOverView).show();
-	$(allDishes).hide();
-
-
- });
  
   view.searchBtn.click(function(){
 
-	//searchWord = $('#searchString').val();
-	//model.changeSearchWord(searchWord);
-	$(allDishes).hide();
+	searchWord = $('#searchString').val();
+	model.changeSearchWord(searchWord);
+//	$(allDishes).hide();
 
  });
  

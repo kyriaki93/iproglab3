@@ -138,7 +138,7 @@ var DinnerModel = function() {
 			price += ingredient.price;
 		}
 
-		return '<div class="col-md-4"><br>Pending: SEK '+ price +'</div>';	
+		return '<div class="col-md-4"><br>Pending: SEK '+ price*numGuest +'</div>';	
 		
 	}
 
