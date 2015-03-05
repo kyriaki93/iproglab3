@@ -135,25 +135,6 @@ var DinnerModel = function() {
 		
 	}
 
-	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
-	this.getDishPrice = function(id) {
-
-		var price = 0;
-
-		var dish = this.getDish(id);
-		var ingredients = dish.ingredients;
-
-		for (i=0; i<ingredients.length; i++){
-			var ingredient = ingredients[i];
-			price += ingredient.price;
-		}
-
-		return (price*numGuest);
-	}	
-	
-	this.getTotalMenuPrice = function() {
-		
-	}
 
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.

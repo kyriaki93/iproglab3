@@ -14,18 +14,18 @@ var ExampleView = function (container,model) {
 	
 	this.numberOfGuests.html(model.getNumberOfGuests);
 	
-	this.totalCost = container.find("#totalCost");
-	this.dishName = container.find("#dishName");
-	this.dishPrice = container.find("#dishPrice");
+	var totalCost = container.find("#totalCost");
+	var dishName = container.find("#dishName");
+	var dishPrice = container.find("#dishPrice");
 
 	// Side menu part//
 	var type = ['starter', 'main', 'dessert'];
-	var selected = model.getFullMenu();
 	
 	this.fullPrice = function() {
 
 		var output = 0.00;	
-			
+			var selected = model.getFullMenu();
+
 			for(k = 0; k < 3; k++) {
 		
     			if(selected[type[k]]){
@@ -48,13 +48,13 @@ var ExampleView = function (container,model) {
 		}
 	}
 	
-	this.totalCost.html(this.fullPrice);
-	this.dishPrice.html(this.getPrice);
+	totalCost.html(this.fullPrice());
 	
 	this.getPrice = function() {
 
 			var output = "";	
-			
+			var selected = model.getFullMenu();
+
 			for(k = 0; k < 3; k++) {
 			
     			if(selected[type[k]]){
@@ -78,13 +78,14 @@ var ExampleView = function (container,model) {
 			return output;
 		}
 	}
-	this.dishPrice.html(this.getPrice);
+	dishPrice.html(this.getPrice());
 	
 
 this.getNames = function() {
 
 			var output = "";	
-			
+			var selected = model.getFullMenu();
+
 			for(k = 0; k < 3; k++) {
 		
     			if(selected[type[k]]){
@@ -112,7 +113,7 @@ this.getNames = function() {
 		}
 	}
 	
-	this.dishName.html(this.getNames);
+	dishName.html(this.getNames());
 	
 	
 	// Search Menu View //
@@ -192,7 +193,7 @@ this.getNames = function() {
 		
 		
 		div += "</div>";
-		div += "<div class='row'><div class='col-md-4'><center><h2>Ingredients</h2></center><br><div id='quantity' class='col-md-2'>"+ quantity +"</div><div id='amount' class='col-md-3'>"+ unit +"</div><div id='name' class='col-md-3'>"+ name +"</div><div id='price' class='col-md-2'>"+ price +"</div></div><div id='pending' class='col-md-3'>"+ pending +"<center><button class='btn btn-default' type='submit' class='confirmDishBtn' id='getId' style='margin:6% 6% 6% 6%;'>Confirm Dish</button></center></div>";
+		div += "<div class='row'><div class='col-md-4'><center><h2>Ingredients</h2></center><br><div id='quantity' class='col-md-2'>"+ quantity +"</div><div id='amount' class='col-md-3'>"+ unit +"</div><div id='name' class='col-md-3'>"+ name +"</div><div id='price' class='col-md-2'>"+ price +"</div></div><div id='pending' class='col-md-3'>"+ pending +"<center><span class='confirmDishBtn' id='"+ getId+"'><input class='btn btn-default' type='submit' value='Confirm Dish' style='margin:6% 6% 6% 6%;'></span></center></div>";
 		return div;
 
 	};
@@ -211,7 +212,7 @@ this.getNames = function() {
 		
 		var div = '';
 		
-		div += '<div class="row"><div class="col-md-12"><center><div><b><h3>My Dinner: <span id="num"></span>people</h3></b>'
+		div += '<div class="row"><div class="col-md-12"><center><div><b><h3>My Dinner: <span id="num"></span> people</h3></b>'
         div += '<button class="btn btn-default" id="goBackBtn" type="submit">Go back and edit dinner</button>'
         div += '</div></center></div>';
 		
@@ -257,16 +258,18 @@ this.getNames = function() {
 	};
 	
 	this.menuOverView.html(this.getMenu);
+	
 	this.goBackBtn = container.find('#goBackBtn');
 	this.num = container.find("#num");
 	this.num.html(model.getNumberOfGuests);
-	//Funktion som körs vid update
+
+	//When a update is detected --> runs
 	this.update = function (obj){
 		//side menu update
 		this.numberOfGuests.html(model.getNumberOfGuests);
-		this.totalCost.html(this.fullPrice);
-		this.dishPrice.html(this.getPrice);
-		this.dishName.html(this.getNames);
+		totalCost.html(this.fullPrice());
+		dishPrice.html(this.getPrice());
+		dishName.html(this.getNames());
 		//this.removeStarter = container.find("#removeStarter"); 
 		//this.removeMain = container.find("#removeMain");
 		//this.removeDessert = container.find("#removeDessert");
@@ -274,14 +277,13 @@ this.getNames = function() {
 		//select view update
 		this.allDishes.html(this.getDishes);
 		this.images = container.find('.images');
-		this.confirmDishBtn = container.find('.confirmDishBtn');
 
 		//singleDisg view update
 		this.dishView.html(this.getDish);
 		this.backBtn = container.find('#backBtn');
+		this.confirmDishBtn = container.find('.confirmDishBtn');
 
 		//menuOverview
-		this.goBackBtn = container.find('#goBackBtn');
 		this.num.html(model.getNumberOfGuests);
 		
 		exampleViewController.refresh();

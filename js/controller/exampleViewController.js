@@ -11,19 +11,6 @@ var ExampleViewController = function(view, model ) {
  });
 
 
-//When the confirm button is hit, hide and show following 
- view.confirmBtn.click(function(){
- 	$(searchMenuView).hide();
- 	$(dishView).hide();
-	$(startView).hide();
- 	$(menuOverView).show();
-	$(allDishes).hide();
-
-
- });
- 
-
- 
 
 //typeselector controller
 	
@@ -91,17 +78,28 @@ view.images.click(function(){
  	var id = $(this).attr('id');
 
  	id = parseInt(id);
-	document.getElementById('totalCost').innerHTML = "hej";
- 	model.addDishToMenu(id);
- 
+ 	model.addDishToMenu(200);
+ 	
+	$(dishView).hide();
 
  });
 
+//When the confirm button is hit, hide and show following 
+ view.confirmBtn.click(function(){
+ 	$(searchMenuView).hide();
+ 	$(dishView).hide();
+	$(startView).hide();
+ 	$(menuOverView).show();
+	$(allDishes).hide();
+
+
+ });
  
  }
 
 
  this.refresh();
+ 
 
 
 }
