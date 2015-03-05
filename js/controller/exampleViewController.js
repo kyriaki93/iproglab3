@@ -16,6 +16,9 @@ var ExampleViewController = function(view, model ) {
 
 this.refresh = function(){
 
+ view.removeDish.click(function(){
+ 	model.removeDishFromMenu(model.changeId(0));
+ });	
 //When the confirm button is hit, hide and show following 
  view.confirmBtn.click(function(){
  	$(searchMenuView).hide();

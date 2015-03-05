@@ -60,7 +60,7 @@ var ExampleView = function (container,model) {
 
 			return output;
 	}
-	
+	this.removeDish = container.find('#remove');
 	this.dishName.html(this.getNames);
 	
 	
@@ -257,9 +257,7 @@ var ExampleView = function (container,model) {
 		this.totalCost.html(this.fullPrice);
 		this.dishPrice.html(this.getPrice);
 		this.dishName.html(this.getNames);
-		//this.removeStarter = container.find("#removeStarter"); 
-		//this.removeMain = container.find("#removeMain");
-		//this.removeDessert = container.find("#removeDessert");
+		this.removeDish = container.find('#remove');
 		
 		
 		//select view update
@@ -273,6 +271,7 @@ var ExampleView = function (container,model) {
 		//menuOverview
 		this.num.html(model.getNumberOfGuests);
 		this.getMenu();
+		
 		exampleViewController.refresh();
 	}
 
