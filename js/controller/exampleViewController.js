@@ -22,21 +22,7 @@ var ExampleViewController = function(view, model ) {
 
  });
  
-//back to select view
- view.backBtn.click(function(){
- 	$(searchMenuView).show();
- 	$(allDishes).show();
- 	$(dishView).hide();
- });
- 
- //back editing dinner
- view.goBackBtn.click(function(){
- 	$(searchMenuView).show();
- 	$(allDishes).show();
- 	$(dishView).hide();
-    $(menuOverView).hide();
 
- });
  
 
 //typeselector controller
@@ -74,15 +60,30 @@ console.log("removeDessert in ExampleViewController");
 view.images.click(function(){
 	// get id from clickable picture
 	var id = ($(this).attr('id'));
-	model.addCurrentDish(id);
+	model.setCurrentDish(id);
 	
 	//go to dishview
  	$(searchMenuView).hide();
 	$(allDishes).hide();
  	$(dishView).show();
+	$(menuOverView).hide();
 
  });
+ //back to select view
+ view.backBtn.click(function(){
+ 	$(searchMenuView).show();
+ 	$(allDishes).show();
+ 	$(dishView).hide();
+ });
  
+ //back editing dinner
+ view.goBackBtn.click(function(){
+ 	$(searchMenuView).show();
+ 	$(allDishes).show();
+ 	$(dishView).hide();
+    $(menuOverView).hide();
+
+ });
   //Put the selected Dish to menu
  //FUNKAR INTE
  view.confirmDishBtn.click(function(){

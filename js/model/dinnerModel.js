@@ -5,7 +5,7 @@ var DinnerModel = function() {
 	var selectedDishes = new Object();
 	var observers = [];
 	var currentType = 'dessert';
-	this.currentDish;
+	var currentDish = 200;
 
 	this.addObserver = function(observer) {
 		observers.push(observer);
@@ -18,14 +18,20 @@ var DinnerModel = function() {
 			}
 	}
 	
-	this.addCurrentDish = function(id){
-		this.currentDish = id;
+	
+	this.setCurrentDish = function(id){
+		currentDish = id;
+		console.log(currentDish);
 		notifyObservers();
-
+	}
+	
+	this.getCurrentDish = function(){
+		return currentDish;
 	}
 		
 	this.setCurrentType = function(type){
 		currentType = type;
+		console.log(currentType);
 		notifyObservers();
 	
 	}
@@ -457,7 +463,7 @@ var DinnerModel = function() {
 			'name':'ice cream',
 			'quantity':100,
 			'unit':'ml',
-			'price':6
+			'price':7
 			}]
 		},{
 		'id':202,
@@ -469,7 +475,7 @@ var DinnerModel = function() {
 			'name':'ice cream',
 			'quantity':100,
 			'unit':'ml',
-			'price':6
+			'price':8
 			}]
 		}
 	];

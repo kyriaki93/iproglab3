@@ -159,7 +159,7 @@ this.getNames = function() {
 			div += "<p>"+dish.description +"</p></div>"
 		}
 		
-		div += "</div>";
+		div += "</div><br/><br/><br/><br/><br/></br>";
 		return div;
 	};
 		
@@ -171,28 +171,28 @@ this.getNames = function() {
 	//Single dish view//
 	this.dishView = container.find("#dishView");
 		
-	var getType = model.getAllDishes(selectedType);
-		
+	
 	this.getDish = function() {
-	var name = model.getAllIngredients(200);
-	var quantity = model.getQuantity(200);
-	var unit = model.getUnit(200);
-	var price = model.getIngredientPrice(200);
-	var pending = model.pending(200);
+		
+	var getId = model.getCurrentDish();
+	
+	var dish = model.getDish(getId);
+	var name = model.getAllIngredients(getId);
+	var quantity = model.getQuantity(getId);
+	var unit = model.getUnit(getId);
+	var price = model.getIngredientPrice(getId);
+	var pending = model.pending(getId);
 		var div = '';
-		div += '<div class="row">';
-		for(i=0;i<1;i++){
-			var dish = getType[i];
-			
+		div += '<div class="row">';			
 			div += "<div class='col-md-5'><div><center><h2>"+ dish.name +"</h2></center></div>"
 			div += "<img src=images/"+dish.image+" width=100%><br/><br/>";
 			div += "<p>"+dish.description +"</p>"
 			div += "<div id='foodhead'><center><button class='btn btn-default' type='submit' id='backBtn' style='margin:0% 0% 10% 0%;'>Back to Select Dish</button></center></div>";
 			
-		}
+		
 		
 		div += "</div>";
-		div += "<div class='row'><div class='col-md-4'><center><h2>Ingredients</h2></center><br><div id='quantity' class='col-md-2'>"+ quantity +"</div><div id='amount' class='col-md-3'>"+ unit +"</div><div id='name' class='col-md-3'>"+ name +"</div><div id='price' class='col-md-2'>"+ price +"</div></div><div id='pending' class='col-md-3'>"+ pending +"<center><button class='btn btn-default' type='submit' class='confirmDishBtn' id='200' style='margin:6% 6% 6% 6%;'>Confirm Dish</button></center></div>";
+		div += "<div class='row'><div class='col-md-4'><center><h2>Ingredients</h2></center><br><div id='quantity' class='col-md-2'>"+ quantity +"</div><div id='amount' class='col-md-3'>"+ unit +"</div><div id='name' class='col-md-3'>"+ name +"</div><div id='price' class='col-md-2'>"+ price +"</div></div><div id='pending' class='col-md-3'>"+ pending +"<center><button class='btn btn-default' type='submit' class='confirmDishBtn' id='getId' style='margin:6% 6% 6% 6%;'>Confirm Dish</button></center></div>";
 		return div;
 
 	};
@@ -276,9 +276,14 @@ this.getNames = function() {
 		this.images = container.find('.images');
 		this.confirmDishBtn = container.find('.confirmDishBtn');
 
+		//singleDisg view update
+		this.dishView.html(this.getDish);
+		this.backBtn = container.find('#backBtn');
+
 		//menuOverview
 		this.goBackBtn = container.find('#goBackBtn');
 		this.num.html(model.getNumberOfGuests);
+		
 		exampleViewController.refresh();
 	}
 
