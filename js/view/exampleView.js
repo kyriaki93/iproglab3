@@ -5,8 +5,7 @@ var ExampleView = function (container,model) {
 	
 	model.addObserver(this);
 	
-	// Get all the relevant elements of the view (ones that show data
-  	// and/or ones that responed to interaction)
+	// Side menu part//
 	this.numberOfGuests = container.find("#numberOfGuests");
 	this.plusButton = container.find("#plusGuest");
 	this.minusButton = container.find("#minusGuest");
@@ -18,7 +17,6 @@ var ExampleView = function (container,model) {
 	var dishName = container.find("#dishName");
 	var dishPrice = container.find("#dishPrice");
 
-	// Side menu part//
 	var type = ['starter', 'main', 'dessert'];
 	
 	this.fullPrice = function() {
@@ -131,7 +129,7 @@ this.getNames = function() {
     div += '<select id ="typeSelect" class="form-control" multiple="multiple">'
     div += '<option class="dropdown" id="starter" value"starter">Starter</option>'
     div += '<option class="dropdown" id="main" value="main">Main</option>'
-    div += '<option class="dropdown" id="Dessert" value="dessert" selected="selected">dessert</option></select></div></div></div>';
+    div += '<option class="dropdown" id="dessert" value="dessert" selected="selected">Dessert</option></select></div></div></div>';
 	
 	return div;
 	}
@@ -144,12 +142,10 @@ this.getNames = function() {
 	//selectView part//
 	this.allDishes = container.find("#allDishes");
 		
-	var selectedType = model.getCurrentType();
-	
-	var get = model.getAllDishes(selectedType);
-	
 	this.getDishes = function() {
-		
+	
+	var selectedType = model.getCurrentType();
+	var get = model.getAllDishes(selectedType);
 		var div = '';
 		div += '<div class="row">';
 		for(i=0;i<get.length;i++){
@@ -273,6 +269,7 @@ this.getNames = function() {
 		//this.removeStarter = container.find("#removeStarter"); 
 		//this.removeMain = container.find("#removeMain");
 		//this.removeDessert = container.find("#removeDessert");
+		
 		
 		//select view update
 		this.allDishes.html(this.getDishes);

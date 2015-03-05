@@ -6,6 +6,7 @@ var DinnerModel = function() {
 	var observers = [];
 	var currentType = 'dessert';
 	var currentDish = 200;
+	this.searchWord = '';
 
 	this.addObserver = function(observer) {
 		observers.push(observer);
@@ -39,6 +40,12 @@ var DinnerModel = function() {
 	this.getCurrentType = function(){
 		return currentType;
 	
+	}
+	
+	this.changeSearchWord = function(word) {
+		this.searchWord = word;
+		console.log(this.searchWord);
+		notifyObservers();
 	}
 	
 	this.setNumberOfGuests = function(num) {
@@ -200,13 +207,13 @@ var DinnerModel = function() {
 	// you just say "5 eggs" and not "5 pieces of eggs" or anything else.
 	var dishes = [{
 			'id':1,
-		'name':'French toast',
+		'name':'Apple Walnut Crostini',
 		'type':'starter',
-		'image':'toast.jpg',
+		'image':'apple.jpg',
 		'description':"In a large mixing bowl, beat the eggs. Add the milk, brown sugar and nutmeg; stir well to combine. Soak bread slices in the egg mixture until saturated. Heat a lightly oiled griddle or frying pan over medium high heat. Brown slices on both sides, sprinkle with cinnamon and serve hot.",
 		'ingredients':[{ 
 			'name':'eggs',
-			'quantity':0.5,
+			'quantity':1,
 			'unit':'',
 			'price':10
 			},{
@@ -220,7 +227,7 @@ var DinnerModel = function() {
 			'unit':'g',
 			'price':1
 			},{
-			'name':'ground nutmeg',
+			'name':'nutmeg',
 			'quantity':0.5,
 			'unit':'g',
 			'price':12
@@ -232,12 +239,12 @@ var DinnerModel = function() {
 			}]
 		},{
 		'id':2,
-		'name':'Sourdough Starter',
+		'name':'Black Bean Cakes',
 		'type':'starter',
-		'image':'sourdough.jpg',
+		'image':'black.jpg',
 		'description':"Here is how you make it... Lore ipsum...",
 		'ingredients':[{ 
-			'name':'active dry yeast',
+			'name':'dry yeast',
 			'quantity':0.5,
 			'unit':'g',
 			'price':4
@@ -247,16 +254,16 @@ var DinnerModel = function() {
 			'unit':'ml',
 			'price':0
 			},{
-			'name':'all-purpose flour',
+			'name':'flour',
 			'quantity':15,
 			'unit':'g',
 			'price':2
 			}]
 		},{
 		'id':3,
-		'name':'Baked Brie with Peaches',
+		'name':'Salad',
 		'type':'starter',
-		'image':'bakedbrie.jpg',
+		'image':'salad.jpg',
 		'description':"Here is how you make it... Lore ipsum...",
 		'ingredients':[{ 
 			'name':'round Brie cheese',
@@ -276,10 +283,10 @@ var DinnerModel = function() {
 			}]
 		},{
 		'id':100,
-		'name':'Meat balls',
-		'type':'main dish',
-		'image':'meatballs.jpg',
-		'description':"Preheat an oven to 400 degrees F (200 degrees C). Place the beef into a mixing bowl, and season with salt, onion, garlic salt, Italian seasoning, oregano, red pepper flakes, hot pepper sauce, and Worcestershire sauce; mix well. Add the milk, Parmesan cheese, and bread crumbs. Mix until evenly blended, then form into 1 1/2-inch meatballs, and place onto a baking sheet. Bake in the preheated oven until no longer pink in the center, 20 to 25 minutes.",
+		'name':'Chicken Salad',
+		'type':'main',
+		'image':'chicken.jpg',
+		'description':"Preheat an oven to 400 degrees F (200 degrees C). Place the beef into a mixing bowl, and season with salt, onion, garlic salt, Italian seasoning, oregano, red pepper flakes, hot pepper sauce, and Worcestershire sauce; mix well. Add the milk, Parmesan cheese, and bread crumbs.",
 		'ingredients':[{ 
 			'name':'extra lean ground beef',
 			'quantity':115,
@@ -338,9 +345,9 @@ var DinnerModel = function() {
 			}]
 		},{
 		'id':101,
-		'name':'MD 2',
-		'type':'main dish',
-		'image':'bakedbrie.jpg',
+		'name':'Pizza',
+		'type':'main',
+		'image':'pizza.jpg',
 		'description':"Here is how you make it... Lore ipsum...",
 		'ingredients':[{ 
 			'name':'ingredient 1',
@@ -360,31 +367,9 @@ var DinnerModel = function() {
 			}]
 		},{
 		'id':102,
-		'name':'MD 3',
-		'type':'main dish',
-		'image':'meatballs.jpg',
-		'description':"Here is how you make it... Lore ipsum...",
-		'ingredients':[{ 
-			'name':'ingredient 1',
-			'quantity':2,
-			'unit':'pieces',
-			'price':8
-			},{
-			'name':'ingredient 2',
-			'quantity':10,
-			'unit':'g',
-			'price':7
-			},{
-			'name':'ingredient 3',
-			'quantity':5,
-			'unit':'ml',
-			'price':4
-			}]
-		},{
-		'id':102,
-		'name':'MD 4',
-		'type':'main dish',
-		'image':'meatballs.jpg',
+		'name':'Chili Soup',
+		'type':'main',
+		'image':'soup.jpg',
 		'description':"Here is how you make it... Lore ipsum...",
 		'ingredients':[{ 
 			'name':'ingredient 1',

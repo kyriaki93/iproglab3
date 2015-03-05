@@ -1,5 +1,7 @@
 var ExampleViewController = function(view, model ) {
  
+ this.searchWord = '';
+ 
 //add 1 when plus button is hit
  view.plusButton.click(function(){
  model.setNumberOfGuests(model.getNumberOfGuests() + 1);
@@ -95,6 +97,18 @@ view.images.click(function(){
 
  });
  
+  view.searchBtn.click(function(){
+
+	//searchWord = $('#searchString').val();
+	//model.changeSearchWord(searchWord);
+	$(allDishes).hide();
+
+ });
+ 
+  view.dropdown.click(function(){
+ 	var id = $(this).attr('id');	
+ 	model.setCurrentType(id);
+ });
  }
 
 
