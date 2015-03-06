@@ -97,6 +97,12 @@ view.images.click(function(){
 	
  }); 
  
+ view.b.click(function(){
+ 	$(menuOverView).show();
+	$(printPage).hide();
+	
+ }); 
+ 
  
  }
 

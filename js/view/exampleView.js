@@ -255,6 +255,11 @@ var ExampleView = function (container,model) {
 	
 	this.getPrint = function() {
 		var div = '';
+		
+		
+		div += '<div class="row"><div class="col-md-12"><center><div><b><h3>My Dinner: <span id="num2"></span> people</h3></b>'
+        div += '<button class="btn btn-default" id="goBackAgainBtn" type="submit">Go back and edit dinner</button>'
+        div += '</div></center></div>';
 		if(model.currentId != 0){
 		
 			div += '<div class="row">';					
@@ -271,8 +276,8 @@ var ExampleView = function (container,model) {
 		
 	this.printPage.html(this.getPrint); 
 	
-	
-	
+	this.num2 = container.find("#num2");
+	this.b = container.find("#goBackAgainBtn");
 
 	//When a update is detected --> runs
 	this.update = function (obj){
@@ -300,7 +305,10 @@ var ExampleView = function (container,model) {
 		
 		//PrintPage
 		this.printPage.html(this.getPrint);
-		
+		this.num2 = container.find("#num2");
+		this.num2.html(model.getNumberOfGuests);
+		this.b = container.find("#goBackAgainBtn");
+
 		//refresh controller
 		exampleViewController.refresh();
 	}
