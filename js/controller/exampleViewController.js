@@ -20,6 +20,7 @@ this.refresh = function(){
  view.removeDish.click(function(){
  	model.removeDishFromMenu(model.changeId(0));
  });	
+ 
 //When the confirm button is hit, hide and show following 
  view.confirmBtn.click(function(){
  	$(searchMenuView).hide();
@@ -74,7 +75,6 @@ view.images.click(function(){
 
  	id = parseInt(id);
 	model.changeId(id);
-	//model.addDishToMenu(id);
  });
 
  //Search Button

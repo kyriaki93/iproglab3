@@ -2,12 +2,12 @@
 var DinnerModel = function() {
 
 	var numGuest = 3;
-	var selectedDishes = new Object();
 	var observers = [];
 	var currentType = 'dessert';
 	var currentDish = 200;
 	this.searchWord = '';
 	this.currentId = 0;
+	this.menu = [];
 
 	this.addObserver = function(observer) {
 		observers.push(observer);
@@ -19,23 +19,15 @@ var DinnerModel = function() {
 				console.log(observers[i]);
 			}
 	}
-	/*
-	this.setId = function(id){
-		currentId = id;
-		console.log(currentId);
-		notifyObservers();
-	} 
-	
-	this.getId = function(){
-		return currentId;
-	}
-	*/
 	
 	this.changeId = function(id){
 		this.currentId = id;
 		console.log(this.currentId);
+		//put also the same id to menu
+		this.menu.push(id);
 		notifyObservers();
 	}
+
 	
 	this.setCurrentDish = function(id){
 		currentDish = id;
@@ -43,11 +35,12 @@ var DinnerModel = function() {
 		notifyObservers();
 	}
 	
-	
+	//used to get id from from selected dish
 	this.getCurrentDish = function(){
 		return currentDish;
 	}
-		
+	
+	//current type in optionbar
 	this.setCurrentType = function(type){
 		currentType = type;
 		console.log(currentType);
@@ -87,10 +80,10 @@ var DinnerModel = function() {
 
 	//Returns all the dishes on the menu.
 	this.getFullMenu = function() {
-		return selectedDishes;
+		return menu;
 	}
 
-//Returns all ingredients for all the dishes on the menu... //gets ingredients from a specifik ID!!! 
+	//Returns all ingredients for all the dishes on the menu... //gets ingredients from a specifik ID!!! 
 	this.getAllIngredients = function(id) {
 		name = "";
 		var dish = this.getDish(id);
@@ -104,7 +97,8 @@ var DinnerModel = function() {
 		return name;	
 		
 	}
-
+	
+	//quantity 
 	this.getQuantity = function(id) {
 		quantity = "";
 		var dish = this.getDish(id);
@@ -119,6 +113,7 @@ var DinnerModel = function() {
 		
 	}
 	
+	//gets units from dish
 	this.getUnit = function(id) {
 		unit = "";
 		var dish = this.getDish(id);
@@ -132,7 +127,8 @@ var DinnerModel = function() {
 		return unit;	
 		
 	}
-
+	
+	//Price - ingredient
 	this.getIngredientPrice = function(id) {
 		price = "";
 		var dish = this.getDish(id);
@@ -160,6 +156,8 @@ var DinnerModel = function() {
 		return '<div class="col-md-4"><br>Pending: SEK '+ price*numGuest +'</div>';	
 		
 	}
+	
+	//Price for a dish
 	this.getDishPrice = function(id) {
 
 		var price = 0;
@@ -174,27 +172,16 @@ var DinnerModel = function() {
 
 		return (price*numGuest);
 	}	
-	
-
-	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
-	//it is removed from the menu and the new one added.
-	this.addDishToMenu = function(id) {
-
-		var dish = this.getDish(id);
-		var type = dish.type;
-		selectedDishes[type] = id;
-		notifyObservers();
-	}
 
 	//Removes dish from menu
 	this.removeDishFromMenu = function(id) {
-	var dish = this.getDish(id);
-	var type = dish.type; 
-	console.log("removeDishFromMenu in dinnerModel");
-	if(chosenDishes[type] === id) {
-		delete selectedDishes[type];
-		notifyObservers();
-		}
+	//var dish = this.getDish(id);
+	//var type = dish.type; 
+	//console.log("removeDishFromMenu in dinnerModel");
+	//if(chosenDishes[type] === id) {
+	//	delete selectedDishes[type];
+	//	notifyObservers();
+	//	}
 
 	}
 

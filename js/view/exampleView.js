@@ -20,29 +20,45 @@ var ExampleView = function (container,model) {
 	this.dishPrice = container.find("#dishPrice");
 	
 	this.fullPrice = function() {
-			var output = 0.00;
-			if(model.currentId == 0){
+			
+			var output =0.00;
+
+			if(model.menu == 0){
 				output += "0.00";
 			}	
-			if(model.currentId != 0){
-				output += model.getDishPrice(model.currentId);
+			if(model.menu != 0){
+				selected = model.menu;
+				for(var i=0; i < selected.length; i++){
+				one = selected[i];
+				output += model.getDishPrice(one);
+				
+				}
 			}
-		
-		return output;		
+
+			return output;
+				
 	}
 	
 	this.totalCost.html(this.fullPrice);
 	
 	this.getPrice = function() {
-		var output = "";
-			if(model.currentId == 0){
+		
+		
+			var output ='';
+
+			if(model.menu == 0){
 				output += "0.00";
 			}	
-			if(model.currentId != 0){
-				output += model.getDishPrice(model.currentId) + "<br>";
+			if(model.menu != 0){
+				selected = model.menu;
+				for(var i=0; i < selected.length; i++){
+				one = selected[i];
+				output += model.getDishPrice(one) + "<br>";
+				
+				}
 			}
-		
-		return output;
+
+			return output;
 	}
 	
 	this.dishPrice.html(this.getPrice);
@@ -50,12 +66,17 @@ var ExampleView = function (container,model) {
 
 	this.getNames = function() {
 			var output ='';
-			if(model.currentId == 0){
+
+			if(model.menu == 0){
 				output += "Pending";
 			}	
-			if(model.currentId != 0){
-				var dish = model.getDish(model.currentId);
+			if(model.menu != 0){
+				selected = model.menu;
+				for(var i=0; i < selected.length; i++){
+				one = selected[i];
+				var dish = model.getDish(one);
 				output += '<button id="remove" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></button> '+dish.name +'<br/>';
+				}
 			}
 
 			return output;
@@ -63,6 +84,7 @@ var ExampleView = function (container,model) {
 	this.removeDish = container.find('#remove');
 	this.dishName.html(this.getNames);
 	
+	this.dishName.html(this.getNames);
 	
 	///////////////////////////////
 	
@@ -183,55 +205,23 @@ var ExampleView = function (container,model) {
         div += '<button class="btn btn-default" id="goBackBtn" type="submit">Go back and edit dinner</button>'
         div += '</div></center></div>';
 
-		/*
-		var price=0;
-			div += '<center><div class="row">';
-				var selected = model.getFullMenu();
-
-				var type = ['starter', 'main', 'dessert'];
-						
-			for(k = 0; k < 3; k++) {
-		
-    			if(selected[type[k]]){
-					if(type[k] == 'starter'){
-						var id = selected.starter;
-						var t = model.getDish(id);
-						var p = model.getDishPrice(id);
-						price += p;
-						div += "<div class='col-md-2' style='margin: 2% 2% 2% 2%'><center><h2>"+ t.name+ "</h2><img src=images/"+t.image+" width=100%><br/><h5>"+ p +" SEK</h5></center></div>";
-					}
-						if(type[k] == 'main'){
-						var id = selected.main;
-						var t = model.getDish(id);
-						var p = model.getDishPrice(id);
-						price += p;
-						div += "<div class='col-md-2' style='margin: 2% 2% 2% 2%'><center><h2>"+ t.name+ "</h2><img src=images/"+t.image+" width=100%><br/><h5>"+ p+" SEK</h5></center></div>";
-					}				
-						if(type[k] == 'starter'){
-						var id = selected.dessert;
-						var t = model.getDish(id);
-						var p = model.getDishPrice(id);
-						price += p;
-						div += "<div class='col-md-2' style='margin: 2% 2% 2% 2%'><center><h2>"+ t.name+ "</h2><img src=images/"+t.image+" width=100%><br/><h5>"+ p +" SEK</h5></center></div>";
-						div += '<div class="col-md-12"><h2>Total price: '+ price +' KR</h2><br><button class="btn btn-default" type="submit" onlick="print()">Print full recipe!</button></div>';
-					}
-					
-				}
-    		k++;
-			return div;
-		} */
 			
-			
-	
 			var price = 0;
-			if(model.currentId != 0){
-				var dish = model.getDish(model.currentId);
-				var p = model.getDishPrice(model.currentId);
+			if(model.menu != 0){
+				selected = model.menu;
+				for(var i=0; i < selected.length; i++){
+				one = selected[i];
+				
+				
+				var dish = model.getDish(one);
+				var p = model.getDishPrice(one);
 			price += p;
 			div += '<center><div class="row">';
 			div += "<div class='col-md-3' style='margin: 2% 2% 2% 2%'><center><h2>"+ dish.name+ "</h2><img src=images/"+dish.image+" width=100%><br/><h5>"+ p +" SEK</h5></center></div>";
+			}
 			div += '<div class="col-md-12"><h2>Total price: '+ price +' KR</h2><br><button class="btn btn-default" type="submit" id="print">Print full recipe!</button></div>'; 
 			div += '</div></center>'; 
+				
 			}
 			else{
 				div += model.currentId;
@@ -260,13 +250,16 @@ var ExampleView = function (container,model) {
 		div += '<div class="row"><div class="col-md-12"><center><div><b><h3>My Dinner: <span id="num2"></span> people</h3></b>'
         div += '<button class="btn btn-default" id="goBackAgainBtn" type="submit">Go back and edit dinner</button>'
         div += '</div></center></div>';
-		if(model.currentId != 0){
-		
-			div += '<div class="row">';					
-			var dish = model.getDish(model.currentId);
-			div += "<div class='col-md-12'><div class='col-md-2' style='margin: 2% 2% 2% 2%'><img src=images/"+dish.image+" width=100%></div><div class='col-md-3'><h2>"+ dish.name+ "</h2><br/><p>"+dish.description+"</p></div><div class='col-md-4'><h2>Preperation</h2><br><p>"+ dish.description +"</p></div></div>";		
+		if(model.menu != 0){
+			selected = model.menu;
+			for(var i=0; i < selected.length; i++){
+				one = selected[i];
+				div += '<div class="row">';					
+				var dish = model.getDish(one);
+				div += "<div class='col-md-12'><div class='col-md-2' style='margin: 2% 2% 2% 2%'><img src=images/"+dish.image+" width=100%></div><div class='col-md-3'><h2>"+ dish.name+ "</h2><br/><p>"+dish.description+"</p></div><div class='col-md-4'><h2>Preperation</h2><br><p>"+ dish.description +"</p></div></div>";		
 			
 			div += '</div>';
+			}
 		}
 		else{
 			div +='Nothing to print';
