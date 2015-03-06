@@ -16,6 +16,7 @@ var ExampleViewController = function(view, model ) {
 
 this.refresh = function(){
 
+//remove dish
  view.removeDish.click(function(){
  	model.removeDishFromMenu(model.changeId(0));
  });	
@@ -27,6 +28,8 @@ this.refresh = function(){
  	$(menuOverView).show();
 	$(allDishes).hide();
 	$(sideMenu).hide();
+	$(printPage).hide();
+
 
 
  });	
@@ -41,6 +44,7 @@ view.images.click(function(){
 	$(allDishes).hide();
  	$(dishView).show();
 	$(menuOverView).hide();
+	$(printPage).hide();
 
  });
  //back to select view
@@ -48,6 +52,7 @@ view.images.click(function(){
  	$(searchMenuView).show();
  	$(allDishes).show();
  	$(dishView).hide();
+	$(printPage).hide();
  });
  
  //back editing dinner
@@ -57,6 +62,8 @@ view.images.click(function(){
  	$(dishView).hide();
     $(menuOverView).hide();
 	$(sideMenu).show();
+	$(printPage).hide();
+
 
  });
  
@@ -67,7 +74,7 @@ view.images.click(function(){
 
  	id = parseInt(id);
 	model.changeId(id);
-	model.addDishToMenu(id);
+	//model.addDishToMenu(id);
  });
 
  //Search Button
@@ -82,6 +89,15 @@ view.images.click(function(){
  	var id = $(this).attr('id');	
  	model.setCurrentType(id);
  });
+ 
+ 
+ view.printBtn.click(function(){
+ 	$(menuOverView).hide();
+	$(printPage).show();
+	
+ }); 
+ 
+ 
  }
 
 

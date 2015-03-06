@@ -174,7 +174,7 @@ var ExampleView = function (container,model) {
 	//MenuOverView//
 	this.menuOverView = container.find("#menuOverView");
 	
-	
+	this.test = function() {
 	this.getMenu = function() {
 		
 		var div = '';
@@ -182,6 +182,7 @@ var ExampleView = function (container,model) {
 		div += '<div class="row"><div class="col-md-12"><center><div><b><h3>My Dinner: <span id="num"></span> people</h3></b>'
         div += '<button class="btn btn-default" id="goBackBtn" type="submit">Go back and edit dinner</button>'
         div += '</div></center></div>';
+
 		/*
 		var price=0;
 			div += '<center><div class="row">';
@@ -221,19 +222,19 @@ var ExampleView = function (container,model) {
 		} */
 			
 			
-			
+	
 			var price = 0;
 			if(model.currentId != 0){
 				var dish = model.getDish(model.currentId);
 				var p = model.getDishPrice(model.currentId);
 			price += p;
 			div += '<center><div class="row">';
-			div += "<div class='col-md-2' style='margin: 2% 2% 2% 2%'><center><h2>"+ dish.name+ "</h2><img src=images/"+dish.image+" width=100%><br/><h5>"+ p +" SEK</h5></center></div>";
+			div += "<div class='col-md-3' style='margin: 2% 2% 2% 2%'><center><h2>"+ dish.name+ "</h2><img src=images/"+dish.image+" width=100%><br/><h5>"+ p +" SEK</h5></center></div>";
 			div += '<div class="col-md-12"><h2>Total price: '+ price +' KR</h2><br><button class="btn btn-default" type="submit" id="print">Print full recipe!</button></div>'; 
 			div += '</div></center>'; 
 			}
 			else{
-				div += 'heja';
+				div += model.currentId;
 			}
 		return div;
 		
@@ -241,14 +242,37 @@ var ExampleView = function (container,model) {
 	};
 	this.menuOverView.html(this.getMenu);
 	
+	}
 	this.goBackBtn = container.find('#goBackBtn');
 	this.num = container.find("#num");
-	this.num.html(model.getNumberOfGuests);
+	this.printBtn = container.find("#print");
 	
 	
+	
+	//Print page//
 
-
-
+	this.printPage = container.find("#printPage");
+	
+	this.getPrint = function() {
+		var div = '';
+		if(model.currentId != 0){
+		
+			div += '<div class="row">';					
+			var dish = model.getDish(model.currentId);
+			div += "<div class='col-md-12'><div class='col-md-2' style='margin: 2% 2% 2% 2%'><img src=images/"+dish.image+" width=100%></div><div class='col-md-3'><h2>"+ dish.name+ "</h2><br/><p>"+dish.description+"</p></div><div class='col-md-4'><h2>Preperation</h2><br><p>"+ dish.description +"</p></div></div>";		
+			
+			div += '</div>';
+		}
+		else{
+			div +='Nothing to print';
+		}
+		return div;
+	};
+		
+	this.printPage.html(this.getPrint); 
+	
+	
+	
 
 	//When a update is detected --> runs
 	this.update = function (obj){
@@ -259,7 +283,6 @@ var ExampleView = function (container,model) {
 		this.dishName.html(this.getNames);
 		this.removeDish = container.find('#remove');
 		
-		
 		//select view update
 		this.allDishes.html(this.getDishes);
 		this.images = container.find('.images');
@@ -269,9 +292,16 @@ var ExampleView = function (container,model) {
 		this.confirmDishBtn = container.find('.confirmDishBtn');
 
 		//menuOverview
+		this.test();
+		this.goBackBtn = container.find('#goBackBtn');
+		this.num = container.find("#num");
+		this.printBtn = container.find("#print");
 		this.num.html(model.getNumberOfGuests);
-		this.getMenu();
 		
+		//PrintPage
+		this.printPage.html(this.getPrint);
+		
+		//refresh controller
 		exampleViewController.refresh();
 	}
 
