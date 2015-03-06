@@ -18,7 +18,15 @@ this.refresh = function(){
 
 //remove dish
  view.removeDish.click(function(){
- 	model.removeDishFromMenu(model.changeId(0));
+ 	
+	var id = $(this).attr('id');
+ 	id = parseInt(id);
+	
+	menu = model.menu;
+	var index = menu.indexOf(id);
+	menu.splice(index,1);
+	
+
  });	
  
 //When the confirm button is hit, hide and show following 

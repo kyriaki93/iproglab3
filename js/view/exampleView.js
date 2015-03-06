@@ -73,15 +73,14 @@ var ExampleView = function (container,model) {
 			if(model.menu != 0){
 				selected = model.menu;
 				for(var i=0; i < selected.length; i++){
-				one = selected[i];
-				var dish = model.getDish(one);
-				output += '<button id="remove" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></button> '+dish.name +'<br/>';
+					one = selected[i];
+					var dish = model.getDish(one);
+					output += '<span class="remove" id="'+ one +'"><input type="submit" value="x" class="btn btn-default btn-xs"></span> '+dish.name +'<br/>';
 				}
 			}
-
 			return output;
 	}
-	this.removeDish = container.find('#remove');
+	this.removeDish = container.find('.remove');
 	this.dishName.html(this.getNames);
 	
 	this.dishName.html(this.getNames);
@@ -167,7 +166,7 @@ var ExampleView = function (container,model) {
 	var price = model.getIngredientPrice(getId);
 	var pending = model.pending(getId);
 		var div = '';
-		div += '<div class="row">';			
+			div += '<div class="row">';			
 			div += "<div class='col-md-5'><div><center><h2>"+ dish.name +"</h2></center></div>"
 			div += "<img src=images/"+dish.image+" width=100%><br/><br/>";
 			div += "<p>"+dish.description +"</p>"
@@ -175,8 +174,8 @@ var ExampleView = function (container,model) {
 			
 		
 		
-		div += "</div>";
-		div += "<div class='row'><div class='col-md-4'><center><h2>Ingredients</h2></center><br><div id='quantity' class='col-md-2'>"+ quantity +"</div><div id='amount' class='col-md-2'>"+ unit +"</div><div id='name' class='col-md-6'>"+ name +"</div><div id='price' class='col-md-2'>"+ price +"</div></div><div id='pending' class='col-md-3'>"+ pending +"<center><span class='confirmDishBtn' id='"+ getId+"'><input class='btn btn-default' type='submit' value='Confirm Dish' style='margin:6% 6% 6% 6%;'></span></center></div>";
+			div += "</div>";
+			div += "<div class='row'><div class='col-md-4'><center><h2>Ingredients</h2></center><br><div id='quantity' class='col-md-2'>"+ quantity +"</div><div id='amount' class='col-md-2'>"+ unit +"</div><div id='name' class='col-md-6'>"+ name +"</div><div id='price' class='col-md-2'>"+ price +"</div></div><div id='pending' class='col-md-3'>"+ pending +"<center><span class='confirmDishBtn' id='"+ getId+"'><input class='btn btn-default' type='submit' value='Confirm Dish' style='margin:6% 6% 6% 6%;'></span></center></div>";
 		return div;
 
 	};
@@ -205,14 +204,12 @@ var ExampleView = function (container,model) {
         div += '<button class="btn btn-default" id="goBackBtn" type="submit">Go back and edit dinner</button>'
         div += '</div></center></div>';
 
-			
 			var price = 0;
+			
 			if(model.menu != 0){
 				selected = model.menu;
 				for(var i=0; i < selected.length; i++){
 				one = selected[i];
-				
-				
 				var dish = model.getDish(one);
 				var p = model.getDishPrice(one);
 			price += p;
@@ -241,11 +238,12 @@ var ExampleView = function (container,model) {
 	
 	//Print page//
 
+
+
 	this.printPage = container.find("#printPage");
 	
 	this.getPrint = function() {
 		var div = '';
-		
 		
 		div += '<div class="row"><div class="col-md-12"><center><div><b><h3>My Dinner: <span id="num2"></span> people</h3></b>'
         div += '<button class="btn btn-default" id="goBackAgainBtn" type="submit">Go back and edit dinner</button>'
@@ -279,12 +277,13 @@ var ExampleView = function (container,model) {
 		this.totalCost.html(this.fullPrice);
 		this.dishPrice.html(this.getPrice);
 		this.dishName.html(this.getNames);
-		this.removeDish = container.find('#remove');
+		this.removeDish = container.find('.remove');
 		
 		//select view update
 		this.allDishes.html(this.getDishes);
 		this.images = container.find('.images');
-		//singleDisg view update
+		
+		//singleDish view update
 		this.dishView.html(this.getDish);
 		this.backBtn = container.find('#backBtn');
 		this.confirmDishBtn = container.find('.confirmDishBtn');
