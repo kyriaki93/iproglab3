@@ -22,6 +22,8 @@ this.refresh = function(){
 	var id = $(this).attr('id');
  	id = parseInt(id);
 	
+	//model.setCurrentDish(id);
+	
 	menu = model.menu;
 	var index = menu.indexOf(id);
 	menu.splice(index,1);
