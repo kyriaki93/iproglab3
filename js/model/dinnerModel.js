@@ -175,14 +175,11 @@ var DinnerModel = function() {
 
 	//Removes dish from menu
 	this.removeDishFromMenu = function(id) {
-	//var dish = this.getDish(id);
-	//var type = dish.type; 
-	//console.log("removeDishFromMenu in dinnerModel");
-	//if(chosenDishes[type] === id) {
-	//	delete selectedDishes[type];
-	//	notifyObservers();
-	//	}
-
+	
+		array = this.menu;
+		var index = array.indexOf(id);
+		array.splice(index,1);
+		
 	}
 
 	//function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
